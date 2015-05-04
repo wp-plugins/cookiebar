@@ -31,6 +31,9 @@ function script_caller()
     if ($options['force_lang']) {
         $params .= '&forceLang=' . $options['force_lang'];
     }
+    if ($options['privacy_page']) {
+        $params .= '&privacyPage=' . $options['privacy_page'];
+    }
 
     wp_enqueue_script(
         'cookieBAR',
@@ -96,6 +99,14 @@ function cookiebar_settings_init()
         'pluginPage',
         'cookiebar_pluginPage_section'
     );
+
+    add_settings_field(
+        'privacy_page',
+        __('If you have a custom Privacy Page, type its address here', 'wordpress'),
+        'privacy_page_render',
+        'pluginPage',
+        'cookiebar_pluginPage_section'
+    );
 }
 
 
@@ -137,6 +148,13 @@ function force_lang_render()
         <option value='fr' <?php selected($options['force_lang'], "fr"); ?>>French</option>
     </select>
     <?php
+}
+
+
+function privacy_page_render()
+{
+    $options = get_option('cookiebar_settings');
+    echo "<input type='text' name='cookiebar_settings[privacy_page]' value='". $options['privacy_page'] ."'>";
 }
 
 

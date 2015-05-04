@@ -183,6 +183,9 @@
     width: 600px;
     z-index: 9998;
 }
+#cookie-bar-privacy-page {
+    display: none;
+}
 #cookie-bar-browsers a {
     display: inline-block;
     height: 53px;
