@@ -3,7 +3,7 @@
     Plugin URL: http://cookiebar.com/
     @author: Emanuele "ToX" Toscano
     @description: Cookie Bar is a free & simple solution to the EU cookie law.
-    @version: 1.1
+    @version: 1.1.2
 */
 
 /*
