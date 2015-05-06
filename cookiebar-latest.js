@@ -85,13 +85,16 @@ function setupCookieBar() {
                     var url = decodeURIComponent(getURLParameter("privacyPage"));
                     promptBtn.href = url;
                     promptBtn.removeAttribute("id");
-                    detailsLinkUrl.href = url;
 
                     var detailsBtn = promptBtn.cloneNode(true);
                     promptBtn.insertAdjacentHTML("afterEnd", detailsBtn.outerHTML);
 
                     promptBtn.style.display = "none";
-                    detailsLinkText.style.display = "block";
+
+                    if (detailsLinkUrl !== null) {
+                        detailsLinkUrl.href = url;
+                        detailsLinkText.style.display = "block";
+                    }
                 }
 
                 if (getURLParameter("top")) {
