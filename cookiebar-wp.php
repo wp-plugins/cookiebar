@@ -2,7 +2,7 @@
 /*
 Plugin Name: cookieBAR
 Description: A fast and easy way to use a fast and easy cookie bar plugin
-Version: 1.1.2
+Version: 1.2
 Author: Emanuele "ToX" Toscano
 Author URI: http://emanuele.itoscano.com
 Plugin URI: http://cookie-bar.eu
@@ -39,7 +39,7 @@ function script_caller()
         'cookieBAR',
         plugins_url('cookiebar-latest.js', __FILE__) . $params,
         array(),
-        '1.0',
+        '1.2',
         false
     );
 }

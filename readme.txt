@@ -3,8 +3,8 @@ Contributors: tox82
 Donate link: http://cookie-bar.eu
 Tags: cookie, law, cookielaw, cookiebar
 Requires at least: 3.0.1
-Tested up to: 4.2.1
-Stable tag: 1.1.2
+Tested up to: 4.2.2
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,9 @@ If a user decides to click "Disallow Cookies", cookieBAR will remove all the coo
 2. Details panel
 
 == Changelog ==
+
+= 1.2 =
+* Fixed a css bug that made the bar unreadable in some websites, some minor fixes
 
 = 1.1.2 =
 * Fixed a bug with Internet Explorer and custom privacy page
