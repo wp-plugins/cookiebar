@@ -4,7 +4,7 @@ Donate link: http://cookie-bar.eu
 Tags: cookie, law, cookielaw, cookiebar
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.2
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,12 @@ If a user decides to click "Disallow Cookies", cookieBAR will remove all the coo
 2. Details panel
 
 == Changelog ==
+
+= 1.4.0 =
+* Some new configuration options: always show and remember choice duration
+
+= 1.3.0 =
+* Added themes functionality and two more bundled themes
 
 = 1.2 =
 * Fixed a css bug that made the bar unreadable in some websites, some minor fixes
