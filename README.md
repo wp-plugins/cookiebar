@@ -13,7 +13,7 @@ Cookie bar makes it simple and clear to visitors that cookies are in use and tel
 
 Just place this somewhere in your website and forget it:
 
-    http://cdn.jsdelivr.net/cookie-bar/latest/cookiebar-latest.js
+    //cdn.jsdelivr.net/cookie-bar/1/cookiebar-latest.js
 
 ##### DEMO
 
@@ -54,7 +54,7 @@ You have two options here:
 
 ###### If you need to configure it, you can do it like that:
 
-    http://cdn.jsdelivr.net/cookie-bar/latest/cookiebar-latest.js?forceYes=1&desiredParameters
+    //cdn.jsdelivr.net/cookie-bar/1/cookiebar-latest.js?forceYes=1&desiredParameters
 
 ##### Here is a short list of parameters you can use:
 

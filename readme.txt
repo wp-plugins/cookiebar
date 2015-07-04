@@ -4,7 +4,7 @@ Donate link: http://cookie-bar.eu
 Tags: cookie, law, cookielaw, cookiebar
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.4.0
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,12 @@ If a user decides to click "Disallow Cookies", cookieBAR will remove all the coo
 2. Details panel
 
 == Changelog ==
+
+= 1.5.1 =
+* New: Geolocation - show the bar only in countries affected by the cookie law
+* New: Specify which kind of cookies are in use (technical, third party, tracking cookies)
+* New: The link to the complete privacy page should be in the main banner
+* Bugfix: cookieBAR's cookie is now set at domain level
 
 = 1.4.0 =
 * Some new configuration options: always show and remember choice duration

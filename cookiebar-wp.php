@@ -2,13 +2,13 @@
 /*
 Plugin Name: cookieBAR
 Description: A fast and easy way to use a fast and easy cookie bar plugin
-Version: 1.4.0
+Version: 1.5.1
 Author: Emanuele "ToX" Toscano
 Author URI: http://emanuele.itoscano.com
 Plugin URI: http://cookie-bar.eu
 */
 defined('ABSPATH') or die('No script kiddies please!');
-$plugin = plugin_basename(__FILE__); 
+$plugin = plugin_basename(__FILE__);
 
 /*
 * FRONTEND ACTIONS
@@ -29,6 +29,12 @@ function script_caller()
     if ($options['show_no_consent']) {
         $params .= '&showNoConsent=1';
     }
+    if ($options['thirdparty']) {
+        $params .= '&thirdparty=1';
+    }
+    if ($options['tracking']) {
+        $params .= '&tracking=1';
+    }
     if ($options['force_lang']) {
         $params .= '&forceLang=' . $options['force_lang'];
     }
@@ -46,7 +52,7 @@ function script_caller()
         'cookieBAR',
         plugins_url('cookiebar-latest.js', __FILE__) . $params,
         array(),
-        '1.4.0',
+        '1.5.0',
         false
     );
 }
@@ -56,12 +62,13 @@ function script_caller()
 */
 add_action('admin_menu', 'cookiebar_add_admin_menu');
 add_action('admin_init', 'cookiebar_settings_init');
-add_filter("plugin_action_links_$plugin", 'plugin_settings_link' );
+add_filter("plugin_action_links_$plugin", 'plugin_settings_link');
 
-function plugin_settings_link($links) { 
-    $settings_link = '<a href="themes.php?page=cookiebar">Settings</a>'; 
-    array_unshift($links, $settings_link); 
-    return $links; 
+function plugin_settings_link($links)
+{
+    $settings_link = '<a href="themes.php?page=cookiebar">Settings</a>';
+    array_unshift($links, $settings_link);
+    return $links;
 }
 
 
@@ -137,6 +144,22 @@ function cookiebar_settings_init()
         'pluginPage',
         'cookiebar_pluginPage_section'
     );
+
+    add_settings_field(
+        'tracking',
+        __('This website makes use of tracking cookies', 'wordpress'),
+        'tracking_render',
+        'pluginPage',
+        'cookiebar_pluginPage_section'
+    );
+
+    add_settings_field(
+        'thirdparty',
+        __('This website makes use of third party cookies', 'wordpress'),
+        'thirdparty_render',
+        'pluginPage',
+        'cookiebar_pluginPage_section'
+    );
 }
 
 
@@ -205,6 +228,24 @@ function privacy_page_render()
 {
     $options = get_option('cookiebar_settings');
     echo "<input type='text' name='cookiebar_settings[privacy_page]' value='". $options['privacy_page'] ."'>";
+}
+
+
+function thirdparty_render()
+{
+    $options = get_option('cookiebar_settings');
+    ?>
+    <input type='checkbox' name='cookiebar_settings[thirdparty]' <?php checked($options['thirdparty'], 1); ?> value='1'>
+    <?php
+}
+
+
+function tracking_render()
+{
+    $options = get_option('cookiebar_settings');
+    ?>
+    <input type='checkbox' name='cookiebar_settings[tracking]' <?php checked($options['tracking'], 1); ?> value='1'>
+    <?php
 }
 
 
