@@ -3,8 +3,8 @@ Contributors: tox82
 Donate link: http://cookie-bar.eu
 Tags: cookie, law, cookielaw, cookiebar
 Requires at least: 3.0.1
-Tested up to: 4.2.2
-Stable tag: 1.5.1
+Tested up to: 4.3
+Stable tag: 1.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,17 @@ If a user decides to click "Disallow Cookies", cookieBAR will remove all the coo
 2. Details panel
 
 == Changelog ==
+
+= 1.5.3 =
+* New: Added minified CSS and JS
+* Bugfix: cookieLawStates should include GB not UK
+* Bugfix: When hiding the cookieBar, margins are not correctly reset
+
+= 1.5.2 =
+* New: Added Hungarian translation
+* New: Add support for German
+* Bugfix: Fix prompt for no consent
+* Bugfix: Minor fixes and improvements
 
 = 1.5.1 =
 * New: Geolocation - show the bar only in countries affected by the cookie law

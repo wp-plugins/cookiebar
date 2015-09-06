@@ -3,7 +3,7 @@
   Plugin URL: http://cookie-bar.eu/
   @author: Emanuele "ToX" Toscano
   @description: Cookie Bar is a free & simple solution to the EU cookie law.
-  @version: 1.5.1
+  @version: 1.5.3
 */
 
 /*
@@ -12,7 +12,9 @@
 var CookieLanguages = [
   'en',
   'it',
-  'fr'
+  'fr',
+  'hu',
+  'de'
 ];
 
 var cookieLawStates = [
@@ -42,7 +44,7 @@ var cookieLawStates = [
   'SK',
   'FI',
   'SE',
-  'UK'
+  'GB'
 ];
 
 
@@ -68,8 +70,8 @@ function setupCookieBar() {
    * @param null
    * @return null
    */
-  if (getCookie('cookiebar') == 'CookieDisallowed') {
-    removeCookie();
+  if (getCookie() == 'CookieDisallowed') {
+    removeCookies();
     setCookie('cookiebar', 'CookieDisallowed');
   }
 
@@ -90,13 +92,13 @@ function setupCookieBar() {
       var country = JSON.parse(checkEurope.responseText).country_code;
       if (cookieLawStates.indexOf(country) > -1) {
         if (getURLParameter('always')) {
-          var accepted = getCookie('cookiebar');
+          var accepted = getCookie();
           if (accepted === undefined) {
             startup();
           }
         } else {
           if (document.cookie.length > 0 || window.localStorage.length > 0) {
-            var accepted = getCookie('cookiebar');
+            var accepted = getCookie();
             if (accepted === undefined) {
               startup();
             }
@@ -122,7 +124,7 @@ function setupCookieBar() {
     console.log('cookieBAR - Timeout for freegeoip');
 
     if (document.cookie.length > 0 || window.localStorage.length > 0) {
-      var accepted = getCookie('cookiebar');
+      var accepted = getCookie();
       if (accepted === undefined) {
         startup();
       }
@@ -265,18 +267,15 @@ function setupCookieBar() {
 
   /**
    * Get Cookie Bar's cookie if available
-   * @param {string} name - cookie name
    * @return {string} cookie value
    */
-  function getCookie(name) {
-    var i, x, y, ARRcookies = document.cookie.split(';');
-    for (i = 0; i < ARRcookies.length; i++) {
-      x = ARRcookies[i].substr(0, ARRcookies[i].indexOf('='));
-      y = ARRcookies[i].substr(ARRcookies[i].indexOf('=') + 1);
-      x = x.replace(/^\s+|\s+$/g, '');
-      if (x == name) {
-        return decodeURI(y);
-      }
+  function getCookie() {
+    var cookieValue = document.cookie.match(/(;)?cookiebar=([^;]*);?/);
+
+    if (cookieValue == null) {
+      return undefined;
+    } else {
+      return decodeURI(cookieValue)[2];
     }
   }
 
@@ -299,10 +298,10 @@ function setupCookieBar() {
   }
 
   /**
-   * Remove all the cookies and empty localStorage when user refuses cookies :(
+   * Remove all the cookies and empty localStorage when user refuses cookies
    * @return null
    */
-  function removeCookie() {
+  function removeCookies() {
     // Clear cookies
     document.cookie.split(';')
       .forEach(function(c) {
@@ -374,9 +373,11 @@ function setupCookieBar() {
     var height = document.getElementById('cookie-bar').clientHeight;
 
     if (getURLParameter('top')) {
-      document.getElementsByTagName('body')[0].style.marginTop = -height + 'px';
+      var currentTop = parseInt(document.getElementsByTagName('body')[0].style.marginTop);
+      document.getElementsByTagName('body')[0].style.marginTop = currentTop - height + 'px';
     } else {
-      document.getElementsByTagName('body')[0].style.marginBottom = -height + 'px';
+      var currentBottom = parseInt(document.getElementsByTagName('body')[0].style.marginBottom);
+      document.getElementsByTagName('body')[0].style.marginBottom = currentBottom -height + 'px';
     }
   }
 
@@ -407,10 +408,10 @@ function setupCookieBar() {
     });
 
     buttonNo.addEventListener('click', function() {
-      var txt = promptNoConsent.innerText;
+      var txt = promptNoConsent.textContent.trim();
       var confirm = window.confirm(txt);
       if (confirm === true) {
-        removeCookie();
+        removeCookies();
         setCookie('cookiebar', 'CookieDisallowed');
         clearBodyMargin();
         fadeOut(prompt, 250);

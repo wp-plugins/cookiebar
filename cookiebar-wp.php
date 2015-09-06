@@ -2,7 +2,7 @@
 /*
 Plugin Name: cookieBAR
 Description: A fast and easy way to use a fast and easy cookie bar plugin
-Version: 1.5.1
+Version: 1.5.3
 Author: Emanuele "ToX" Toscano
 Author URI: http://emanuele.itoscano.com
 Plugin URI: http://cookie-bar.eu
@@ -50,9 +50,9 @@ function script_caller()
 
     wp_enqueue_script(
         'cookieBAR',
-        plugins_url('cookiebar-latest.js', __FILE__) . $params,
+        plugins_url('cookiebar-latest.min.js', __FILE__) . $params,
         array(),
-        '1.5.0',
+        '1.5.3',
         false
     );
 }
@@ -277,6 +277,8 @@ function cookiebar_options_page()
     <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
     <img alt="" border="0" src="https://www.paypalobjects.com/it_IT/i/scr/pixel.gif" width="1" height="1">
     </form>
+
+    If you prefere Bitcoins, you can make a donation to: <strong>3JmwvrV2mQk13TZ3NDigqMJCUu14bnxNF4</strong>
 
     <?php
 }
